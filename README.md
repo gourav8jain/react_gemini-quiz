@@ -1,46 +1,124 @@
-# Getting Started with Create React App
+# AI-Powered Quiz Generator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern React application that generates custom quizzes using Google's Gemini AI. Built with TypeScript, Material-UI, and deployed on GitHub Pages.
 
-## Available Scripts
+## 🚀 Live Demo
 
-In the project directory, you can run:
+**[Try the Quiz Generator →](https://gourav8jain.github.io/react_gemini-quiz)**
 
-### `npm start`
+## 📸 Screenshot
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*[Add a screenshot of your app here - you can take one from the live demo or local development]*
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## ✨ Features
 
-### `npm test`
+- **AI-Powered Quiz Generation**: Create quizzes on any topic using Google's Gemini AI
+- **Customizable Settings**: Choose difficulty level, number of questions, and question types
+- **Interactive Quiz Taking**: Beautiful UI with progress tracking and timer
+- **Detailed Results**: Get comprehensive feedback with explanations for each answer
+- **Responsive Design**: Works perfectly on desktop and mobile devices
+- **Modern Tech Stack**: Built with React 19, TypeScript, and Material-UI
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Tech Stack
 
-### `npm run build`
+- **Frontend**: React 19 with TypeScript
+- **UI Framework**: Material-UI (MUI) v7
+- **AI Integration**: Google Gemini AI API
+- **Icons**: Lucide React
+- **Deployment**: GitHub Pages
+- **Build Tool**: Create React App
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🎯 How It Works
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Generate Quiz**: Enter any topic (JavaScript, World History, Biology, etc.)
+2. **Customize**: Set difficulty (Easy/Medium/Hard), number of questions (3-15), and type (Multiple Choice/True-False)
+3. **Take Quiz**: Answer questions with a beautiful, interactive interface
+4. **Review Results**: See your score, time taken, and detailed explanations
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🚀 Getting Started
 
-### `npm run eject`
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
+- Google Gemini AI API key
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/gourav8jain/react_gemini-quiz.git
+   cd react_gemini-quiz
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+3. **Set up environment variables**
+   ```bash
+   cp .env.example .env
+   ```
+   Add your Google Gemini AI API key to the `.env` file:
+   ```
+   REACT_APP_GEMINI_API_KEY=your_api_key_here
+   ```
 
-## Learn More
+4. **Start development server**
+   ```bash
+   npm start
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+5. **Open your browser**
+   Navigate to `http://localhost:3000`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 📦 Deployment
+
+This app is deployed on GitHub Pages. To deploy your own version:
+
+1. **Fork the repository**
+2. **Update the homepage URL** in `package.json`:
+   ```json
+   "homepage": "https://yourusername.github.io/react_gemini-quiz"
+   ```
+3. **Deploy to GitHub Pages**:
+   ```bash
+   npm run deploy
+   ```
+
+## 🔧 Project Structure
+
+```
+src/
+├── components/          # React components
+│   ├── QuizGenerator.tsx
+│   ├── QuizTaker.tsx
+│   └── QuizResults.tsx
+├── services/           # API services
+│   └── geminiService.ts
+├── types/              # TypeScript type definitions
+│   └── quiz.ts
+└── App.tsx            # Main application component
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 👨‍💻 Author
+
+**Gourav Jain**
+- GitHub: [@gourav8jain](https://github.com/gourav8jain)
+- Project: [React Gemini Quiz Generator](https://github.com/gourav8jain/react_gemini-quiz)
+
+---
+
+⭐ **Star this repository if you found it helpful!**
