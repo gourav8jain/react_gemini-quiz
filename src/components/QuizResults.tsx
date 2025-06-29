@@ -74,32 +74,31 @@ export const QuizResults: React.FC<QuizResultsProps> = ({ quiz, result, onBack }
             </Typography>
           </Stack>
 
-          <Grid container spacing={2} justifyContent="center" sx={{ mb: 4 }}>
-            <Grid item xs={12} sm={4}>
-              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'success.lighter' }}>
-                <Typography variant="h5" fontWeight={700} color={getScoreColor(result.score)}>
-                  {Math.round(result.score)}%
-                </Typography>
-                <Typography variant="body2" color="success.main">Score</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'info.lighter' }}>
-                <Typography variant="h5" fontWeight={700} color="info.main">
-                  {result.correctAnswers}/{result.totalQuestions}
-                </Typography>
-                <Typography variant="body2" color="info.main">Correct Answers</Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'warning.lighter' }}>
-                <Typography variant="h5" fontWeight={700} color="warning.main">
-                  {formatTime(result.timeTaken)}
-                </Typography>
-                <Typography variant="body2" color="warning.main">Time Taken</Typography>
-              </Paper>
-            </Grid>
-          </Grid>
+          <Stack 
+            direction={{ xs: 'column', sm: 'row' }} 
+            spacing={2} 
+            justifyContent="center" 
+            sx={{ mb: 4 }}
+          >
+            <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'success.lighter', flex: 1 }}>
+              <Typography variant="h5" fontWeight={700} color={getScoreColor(result.score)}>
+                {Math.round(result.score)}%
+              </Typography>
+              <Typography variant="body2" color="success.main">Score</Typography>
+            </Paper>
+            <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'info.lighter', flex: 1 }}>
+              <Typography variant="h5" fontWeight={700} color="info.main">
+                {result.correctAnswers}/{result.totalQuestions}
+              </Typography>
+              <Typography variant="body2" color="info.main">Correct Answers</Typography>
+            </Paper>
+            <Paper sx={{ p: 2, textAlign: 'center', bgcolor: 'warning.lighter', flex: 1 }}>
+              <Typography variant="h5" fontWeight={700} color="warning.main">
+                {formatTime(result.timeTaken)}
+              </Typography>
+              <Typography variant="body2" color="warning.main">Time Taken</Typography>
+            </Paper>
+          </Stack>
 
           <Alert severity="info" sx={{ mb: 4, textAlign: 'center' }}>
             <Typography variant="subtitle1" color={getScoreColor(result.score)}>
