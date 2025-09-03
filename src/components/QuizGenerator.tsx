@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Brain, Loader2, Sparkles } from 'lucide-react';
 import type { QuizSettings, Quiz } from '../types/quiz';
-import { geminiService } from '../services/geminiService';
+import { unifiedAIService } from '../services/unifiedAIService';
 import {
   Box,
   Card,
@@ -49,7 +49,7 @@ export const QuizGenerator: React.FC<QuizGeneratorProps> = ({ onQuizGenerated })
     setIsGenerating(true);
     setError(null);
     try {
-      const response = await geminiService.generateQuiz(settings);
+      const response = await unifiedAIService.generateQuiz(settings);
       const quiz: Quiz = {
         id: Date.now().toString(),
         title: `${settings.topic} Quiz`,

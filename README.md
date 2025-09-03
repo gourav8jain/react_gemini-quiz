@@ -57,14 +57,17 @@ A modern React application that generates custom quizzes using Google's Gemini A
 
 3. **Set up environment variables**
    
-   Create a `.env` file in the root directory and add your Google Gemini AI API key:
+   Create a `.env` file in the root directory and add your API keys:
    ```bash
-   echo "REACT_APP_GEMINI_API_KEY=your_api_key_here" > .env
+   echo "REACT_APP_GEMINI_API_KEY=your_gemini_api_key_here" > .env
+   echo "REACT_APP_OPENAI_API_KEY=your_openai_api_key_here" >> .env
    ```
    
-   **Important**: Replace `your_api_key_here` with your actual Gemini API key. You can get one from the [Google AI Studio](https://makersuite.google.com/app/apikey).
+   **Important**: Replace the API keys with your actual keys:
+   - **Gemini API Key**: Get one from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - **OpenAI API Key**: Get one from [OpenAI Platform](https://platform.openai.com/api-keys)
    
-   **Security Note**: The `.env` file is already included in `.gitignore` to prevent accidentally committing your API key to version control.
+   **Security Note**: The `.env` file is already included in `.gitignore` to prevent accidentally committing your API keys to version control.
 
 4. **Start development server**
    ```bash
@@ -102,6 +105,9 @@ This app is deployed on GitHub Pages using GitHub Actions. To deploy your own ve
    - Click "New repository secret"
    - Name: `GEMINI_API_KEY`
    - Value: Your Gemini API key
+   - Click "New repository secret" again
+   - Name: `OPENAI_API_KEY`
+   - Value: Your OpenAI API key
 4. **Enable GitHub Pages**:
    - Go to Settings → Pages
    - Source: Deploy from a branch
@@ -109,7 +115,7 @@ This app is deployed on GitHub Pages using GitHub Actions. To deploy your own ve
    - Folder: `/ (root)`
 5. **Push to main branch** - The GitHub Action will automatically build and deploy your app
 
-**Note**: The GitHub Actions workflow will automatically use your API key from secrets during the build process, ensuring your deployed app works correctly.
+**Note**: The GitHub Actions workflow will automatically use your API keys from secrets during the build process, ensuring your deployed app works correctly. The app will try Gemini first and fall back to OpenAI if Gemini is unavailable.
 
 ## 🔧 Project Structure
 

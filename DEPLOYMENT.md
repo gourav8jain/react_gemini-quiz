@@ -12,6 +12,11 @@
    - **Name**: `GEMINI_API_KEY`
    - **Value**: `AIzaSyCxskWMit0V6WBJ0S-ADQYimsDYPrG3NNY`
 6. Click **Add secret**
+7. Click **New repository secret** again
+8. Fill in:
+   - **Name**: `OPENAI_API_KEY`
+   - **Value**: Your OpenAI API key (get from https://platform.openai.com/api-keys)
+9. Click **Add secret**
 
 ### 2. Enable GitHub Pages
 
@@ -34,11 +39,12 @@ Your app will be available at: `https://gourav8jain.github.io/react_gemini-quiz`
 
 ## How It Works
 
-- The GitHub Action creates a `.env` file during build with your API key from secrets
-- The built app includes the API key in the JavaScript bundle
+- The GitHub Action creates a `.env` file during build with your API keys from secrets
+- The built app includes the API keys in the JavaScript bundle
+- The app tries Gemini API first, then falls back to OpenAI if Gemini fails
 - GitHub Pages serves the static files
-- Your app works perfectly with the Gemini API!
+- Your app works perfectly with both AI services!
 
 ## Security Note
 
-The API key is only included in the built JavaScript bundle, not in your source code. This is a common pattern for client-side applications that need API access.
+The API keys are only included in the built JavaScript bundle, not in your source code. This is a common pattern for client-side applications that need API access. The app will automatically try Gemini first and fall back to OpenAI if needed.
