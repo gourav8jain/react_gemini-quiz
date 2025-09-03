@@ -31,6 +31,7 @@ export const QuizGenerator: React.FC<QuizGeneratorProps> = ({ onQuizGenerated })
 
   const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [serviceUsed, setServiceUsed] = useState<'gemini' | 'openai' | 'mock' | null>(null);
 
   const handleInputChange = (field: keyof QuizSettings, value: string | number) => {
     setSettings((prev) => ({
@@ -48,8 +49,19 @@ export const QuizGenerator: React.FC<QuizGeneratorProps> = ({ onQuizGenerated })
     }
     setIsGenerating(true);
     setError(null);
+    setServiceUsed(null);
+    
     try {
       const response = await unifiedAIService.generateQuiz(settings);
+      
+      // Determine which service was used based on console logs
+      // This is a simple approach - in a real app you might want to return this info from the service
+      if (response.questions[0]?.question.includes('Sample question')) {
+        setServiceUsed('mock');
+      } else {
+        setServiceUsed('gemini'); // Default assumption
+      }
+      
       const quiz: Quiz = {
         id: Date.now().toString(),
         title: `${settings.topic} Quiz`,
@@ -147,6 +159,15 @@ export const QuizGenerator: React.FC<QuizGeneratorProps> = ({ onQuizGenerated })
                 </FormControl>
               </Stack>
               {error && <Alert severity="error">{error}</Alert>}
+              {serviceUsed === 'mock' && (
+                <Alert severity="info">
+                  <Typography variant="body2">
+                    <strong>Note:</strong> AI services are currently experiencing high demand. 
+                    We're showing sample questions for demonstration purposes. 
+                    Please try again later for AI-generated content.
+                  </Typography>
+                </Alert>
+              )}
               <Button
                 type="submit"
                 variant="contained"

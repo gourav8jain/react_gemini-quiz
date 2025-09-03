@@ -1,5 +1,6 @@
 import { geminiService } from './geminiService';
 import { openaiService } from './openaiService';
+import { mockAIService } from './mockAIService';
 import type { QuizSettings, GeminiResponse } from '../types/quiz';
 
 export class UnifiedAIService {
@@ -26,8 +27,24 @@ export class UnifiedAIService {
         console.log('Successfully generated quiz with OpenAI');
         return result;
       } catch (openaiError) {
-        console.error('Both Gemini and OpenAI APIs failed:', { geminiError, openaiError });
-        throw new Error('Failed to generate quiz. Both Gemini and OpenAI APIs are unavailable. Please try again later.');
+        console.warn('OpenAI API failed, falling back to mock service:', openaiError);
+        
+        // Check if it's a rate limit/quota error and wait before trying mock
+        if (openaiError instanceof Error && openaiError.message.includes('429')) {
+          console.log('OpenAI rate limit detected, waiting 3 seconds before using mock service...');
+          await new Promise(resolve => setTimeout(resolve, 3000));
+        }
+        
+        // Final fallback to mock service
+        try {
+          console.log('Using mock service to generate sample quiz...');
+          const result = await mockAIService.generateQuiz(settings);
+          console.log('Successfully generated quiz with mock service');
+          return result;
+        } catch (mockError) {
+          console.error('All services failed:', { geminiError, openaiError, mockError });
+          throw new Error('Failed to generate quiz. All AI services are unavailable. Please try again later.');
+        }
       }
     }
   }

@@ -57,6 +57,12 @@ export class OpenAIService {
       return quizData;
     } catch (error) {
       console.error('Error generating quiz with OpenAI:', error);
+      
+      // Check if it's a quota/rate limit error
+      if (error instanceof Error && error.message.includes('429')) {
+        throw new Error('OpenAI quota exceeded. Please try again later.');
+      }
+      
       throw new Error('Failed to generate quiz with OpenAI. Please try again.');
     }
   }
