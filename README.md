@@ -56,13 +56,15 @@ A modern React application that generates custom quizzes using Google's Gemini A
    ```
 
 3. **Set up environment variables**
+   
+   Create a `.env` file in the root directory and add your Google Gemini AI API key:
    ```bash
-   cp .env.example .env
+   echo "REACT_APP_GEMINI_API_KEY=your_api_key_here" > .env
    ```
-   Add your Google Gemini AI API key to the `.env` file:
-   ```
-   REACT_APP_GEMINI_API_KEY=your_api_key_here
-   ```
+   
+   **Important**: Replace `your_api_key_here` with your actual Gemini API key. You can get one from the [Google AI Studio](https://makersuite.google.com/app/apikey).
+   
+   **Security Note**: The `.env` file is already included in `.gitignore` to prevent accidentally committing your API key to version control.
 
 4. **Start development server**
    ```bash
@@ -74,7 +76,9 @@ A modern React application that generates custom quizzes using Google's Gemini A
 
 ## 📦 Deployment
 
-This app is deployed on GitHub Pages. To deploy your own version:
+This app is deployed on GitHub Pages using GitHub Actions. To deploy your own version:
+
+### Option 1: Manual Deployment (Local Build)
 
 1. **Fork the repository**
 2. **Update the homepage URL** in `package.json`:
@@ -85,6 +89,27 @@ This app is deployed on GitHub Pages. To deploy your own version:
    ```bash
    npm run deploy
    ```
+
+### Option 2: Automated Deployment with GitHub Actions (Recommended)
+
+1. **Fork the repository**
+2. **Update the homepage URL** in `package.json`:
+   ```json
+   "homepage": "https://yourusername.github.io/react_gemini-quiz"
+   ```
+3. **Set up GitHub Secrets**:
+   - Go to your repository Settings → Secrets and variables → Actions
+   - Click "New repository secret"
+   - Name: `GEMINI_API_KEY`
+   - Value: Your Gemini API key
+4. **Enable GitHub Pages**:
+   - Go to Settings → Pages
+   - Source: Deploy from a branch
+   - Branch: `gh-pages` (will be created automatically)
+   - Folder: `/ (root)`
+5. **Push to main branch** - The GitHub Action will automatically build and deploy your app
+
+**Note**: The GitHub Actions workflow will automatically use your API key from secrets during the build process, ensuring your deployed app works correctly.
 
 ## 🔧 Project Structure
 
