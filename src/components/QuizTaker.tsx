@@ -10,7 +10,6 @@ import {
   Stack,
   LinearProgress,
   Paper,
-  IconButton,
 } from '@mui/material';
 
 interface QuizTakerProps {

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { AppBar, Toolbar, Typography, Container, Box, Link, Stack, Paper } from '@mui/material';
-import { Brain, Zap, BookOpen, Target } from 'lucide-react';
+import { Brain } from 'lucide-react';
 import { QuizGenerator } from './components/QuizGenerator';
 import { QuizTaker } from './components/QuizTaker';
 import { QuizResults } from './components/QuizResults';

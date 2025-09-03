@@ -26,7 +26,33 @@ export class GeminiService {
 
   private buildPrompt(settings: QuizSettings): string {
     const { topic, difficulty, numQuestions, questionType } = settings;
-    return `Generate a ${difficulty} level quiz about "${topic}" with ${numQuestions} ${questionType} questions.\n\nPlease provide the response in the following JSON format:\n\n\`\`\`json\n{\n  "questions": [\n    {\n      "question": "Your question here?",\n      "options": ["Option A", "Option B", "Option C", "Option D"],\n      "correctAnswer": 0,\n      "explanation": "Brief explanation of why this is the correct answer"\n    }\n  ]\n}\n\`\`\`\n\nRequirements:\n- Make questions engaging and educational\n- Ensure all options are plausible but only one is correct\n- Provide clear explanations for correct answers\n- Use 0-based indexing for correctAnswer (0 = first option, 1 = second option, etc.)\n- For true-false questions, use [\"True\", \"False\"] as options\n- Make sure the difficulty level matches the specified level\n- Focus on the topic: ${topic}\n\nGenerate exactly ${numQuestions} questions.`;
+    return `Generate a ${difficulty} level quiz about "${topic}" with ${numQuestions} ${questionType} questions.
+
+Please provide the response in the following JSON format:
+
+\`\`\`json
+{
+  "questions": [
+    {
+      "question": "Your question here?",
+      "options": ["Option A", "Option B", "Option C", "Option D"],
+      "correctAnswer": 0,
+      "explanation": "Brief explanation of why this is the correct answer"
+    }
+  ]
+}
+\`\`\`
+
+Requirements:
+- Make questions engaging and educational
+- Ensure all options are plausible but only one is correct
+- Provide clear explanations for correct answers
+- Use 0-based indexing for correctAnswer (0 = first option, 1 = second option, etc.)
+- For true-false questions, use ["True", "False"] as options
+- Make sure the difficulty level matches the specified level
+- Focus on the topic: ${topic}
+
+Generate exactly ${numQuestions} questions.`;
   }
 }
 

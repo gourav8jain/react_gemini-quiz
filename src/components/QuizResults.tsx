@@ -8,8 +8,7 @@ import {
   Button,
   Stack,
   Paper,
-  Alert,
-  Grid
+  Alert
 } from '@mui/material';
 
 interface QuizResultsProps {
