@@ -8,7 +8,14 @@ export class GeminiService {
 
   async generateQuiz(settings: QuizSettings): Promise<GeminiResponse> {
     try {
+      // Check if API key is available
+      if (!process.env.REACT_APP_GEMINI_API_KEY) {
+        throw new Error('Gemini API key not configured');
+      }
+
       const prompt = this.buildPrompt(settings);
+      console.log('Making Gemini API request...');
+      
       const result = await this.model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
@@ -20,6 +27,12 @@ export class GeminiService {
       return quizData;
     } catch (error) {
       console.error('Error generating quiz:', error);
+      
+      // Check if it's a rate limit error
+      if (error instanceof Error && error.message.includes('429')) {
+        throw new Error('Rate limit exceeded. Please try again in a moment.');
+      }
+      
       throw new Error('Failed to generate quiz. Please try again.');
     }
   }

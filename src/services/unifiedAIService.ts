@@ -13,6 +13,12 @@ export class UnifiedAIService {
     } catch (geminiError) {
       console.warn('Gemini API failed, falling back to OpenAI:', geminiError);
       
+      // Check if it's a rate limit error and wait a bit before trying OpenAI
+      if (geminiError instanceof Error && geminiError.message.includes('429')) {
+        console.log('Rate limit detected, waiting 2 seconds before trying OpenAI...');
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      }
+      
       // Fallback to OpenAI
       try {
         console.log('Attempting to generate quiz with OpenAI...');

@@ -1,8 +1,14 @@
 import OpenAI from 'openai';
 import type { QuizSettings, GeminiResponse } from '../types/quiz';
 
+// Get API key from environment variable
+const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+if (!apiKey) {
+  console.warn('OpenAI API key not found in environment variables');
+}
+
 const openai = new OpenAI({
-  apiKey: process.env.REACT_APP_OPENAI_API_KEY || '',
+  apiKey: apiKey || '',
   dangerouslyAllowBrowser: true // Required for client-side usage
 });
 
@@ -11,7 +17,14 @@ export class OpenAIService {
 
   async generateQuiz(settings: QuizSettings): Promise<GeminiResponse> {
     try {
+      // Check if API key is available
+      if (!process.env.REACT_APP_OPENAI_API_KEY) {
+        throw new Error('OpenAI API key not configured');
+      }
+
       const prompt = this.buildPrompt(settings);
+      console.log('Making OpenAI API request...');
+      
       const completion = await openai.chat.completions.create({
         model: this.model,
         messages: [
